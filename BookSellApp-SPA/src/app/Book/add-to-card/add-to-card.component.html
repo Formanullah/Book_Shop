@@ -1,0 +1,162 @@
+<!-- <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="">
+          <form action="#">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Sub Total</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let book of bookAddedTocart">
+                  <tr >
+                    <td class="">
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                      <span class="cartImage"><img src="{{book.photoUrl}}" alt="image"></span>
+                    </td>
+                    <td class="">{{book.title}}</td>
+                    <td class="">$ {{book.price}}</td>
+                    <td class="count-input">
+                                    <a class="incr-btn" data-action="decrease" href="#"><i class="fa fa-minus"></i></a>
+                                    <input class="quantity" type="text" value="1">
+                                    <a class="incr-btn" data-action="increase" href="#"><i class="fa fa-plus"></i></a>
+                    </td>
+                    <td class="">$ {{book.price * book.quantity}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="updateArea">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="I have a discount coupon" aria-describedby="basic-addon2">
+                <a href="#" class="btn btn-primary-outlined" id="basic-addon2">apply coupon</a>
+              </div>
+              <a href="#" class="float-right btn btn-secondary-outlined">update cart</a>
+            </div>
+            <div class="row totalAmountArea">
+              <div class="col-sm-4 ml-sm-auto">
+                <ul class="list-unstyled">
+                  <li>Sub Total <span>$ 792.00</span></li>
+                  <li>UK Vat <span>$ 18.00</span></li>
+                  <li>Grand Total <span class="grandTotal">$ 810.00</span></li>
+                </ul>
+              </div>
+            </div>
+            <div class="checkBtnArea">
+              <a href="checkout-step-1.html" class="btn btn-primary btn-default">checkout<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div> -->
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
+<!------ Include the above in your HEAD tag ---------->
+
+<!-- <script src="https://use.fontawesome.com/c560c025cf.js"></script> -->
+<div class="container">
+   <div class="card shopping-cart">
+            <div class="card-header bg-dark text-light">
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                Shipping cart
+                <a [routerLink] = "['/books']" class="btn btn-outline-info btn-sm pull-right">Continue shopping</a>
+                <div class="clearfix"></div>
+            </div>
+            <div *ngIf="bookAddedTocart == null " class="card-header mt-2">
+              <div class="text-center">
+                <div ><h2>Shoping cart is empty. please add books to continue shoping ...</h2></div>
+              </div>
+            </div>
+            <div *ngIf=" bookAddedTocart != null" class="card-body">
+              <!-- PRODUCT -->
+              <div class="card-header">
+                <div class="row">
+                  <div class="col-12 col-sm-12 col-md-2 text-center"></div>
+                  <div class="col-12 text-sm-center col-sm-12 text-md-left col-md-3" style="margin-left: -13px;">
+                    <h6 class="product-name"><strong><i class="fa fa-book"></i> Book</strong></h6>
+                  </div>
+                  <div class="col-12 col-sm-12 text-sm-center col-md-6 text-md-right row" style="margin-left: 94px;">
+                    <div class="col-4 col-sm-4 col-md-4 text-md-center" style="padding-top: 1px;margin-left: 7px;">
+                      <h6><strong>Unit price</strong></h6>
+                    </div>
+                    <div class="col-4 col-sm-4 col-md-3 text-md-right" style="margin-left: -21px;">
+                      <div class="quantity-head">
+                        <h6><strong>Quantity</strong></h6>
+                      </div>
+                    </div>
+                    <div class="col-4 col-sm-4 col-md-3 text-md-left" style="margin-left: 37px;">
+                      <h6><strong>Total</strong></h6>
+                    </div>
+                    <div class="col-4 col-sm-4 col-md-3 text-md-right" style="margin-left: -74px;">
+                      <h6><strong>Delete</strong></h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- END PRODUCT -->
+              
+      </div>
+            <div class="card-body" *ngFor="let book of bookAddedTocart" >
+                    <!-- PRODUCT -->
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-2 text-center">
+                                <img class="img-responsive" src="{{book.photoUrl}}" alt="prewiew" width="120" height="80">
+                        </div>
+                        <div class="col-12 text-sm-center col-sm-12 text-md-left col-md-4">
+                            <h4 class="product-name"><strong>{{book.title}}</strong></h4>
+                        </div>
+                        <div class="col-12 col-sm-12 text-sm-center col-md-6 text-md-right row">
+                            <div class="col-4 col-sm-4 col-md-4 text-md-center" style="padding-top: 5px">
+                                <h6><strong style="font-size: larger;">${{book.price}} <span class="text-muted ml-1">x</span></strong></h6>
+                            </div>
+                            <div class="col-4 col-sm-4 col-md-4 text-md-center" style="margin-left: -21px;
+                        ">
+                                <div class="input-group">
+                                    <button (click) ="onAddQuantity(book.id)" class="btn btn-outline-success"><i class="fa fa-plus"></i></button>
+                                    <input type="button" [ngModel] = "book.totalQuantity" name="quantity" class="quantity-field" size="5">
+                                    <button *ngIf="book.totalQuantity > 1" value="-"(click) ="onRemoveQuantity(book.id)" class="btn btn-outline-danger"><i class="fa fa-minus"></i></button>
+                                </div>
+                            </div>
+                            <div class="col-3 col-sm-3 col-md-3 text-md-center" style="padding-top: 5px; margin-left: -41px;">
+                              <h6><strong style="font-size: larger;">${{book.totalPrice}}</strong></h6>
+                          </div>
+                            <div class="col-2 col-sm-2 col-md-2 text-md-center" style="margin-left: -3px;">
+                                <button type="button" (click) = "deleteItem(book.id)" class="btn btn-outline-danger btn-xs">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <!-- END PRODUCT -->
+                    
+            </div>
+
+            <div class="card-footer" *ngIf=" bookAddedTocart != null">
+                <div class="coupon col-md-5 col-sm-5 no-padding-left pull-left">
+                    <div class="row">
+                        <div class="col-6">
+                            <input type="text" class="form-control" placeholder="cupone code">
+                        </div>
+                        <div class="col-6">
+                            <input type="submit" class="btn btn-default" value="Use cupone">
+                        </div>
+                    </div>
+                </div>
+                <div class="pull-right" style="margin: 10px">
+                    <a [routerLink]="['checkout']"  class="btn btn-success ml-2 pull-right">Checkout</a>
+                    <div class="pull-right mr-2" style="margin: 5px">
+                        <strong>Total price: <b>${{total}}</b></strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>

@@ -1,0 +1,119 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card shopping-cart">
+        <div class="card-header bg-dark text-light">
+          <i class="fa fa-shopping-cart mr-1" aria-hidden="true"></i>
+          Order Details
+          <div class="clearfix"></div>
+      </div>
+        <div class="card-body">
+          <div>
+            <form [formGroup]="orderDetailsForm" (ngSubmit)="checkOut()">
+              <!-- <form [formGroup]="orderDetailsForm" (ngSubmit)="addBook()"></form> -->
+              <div class="form-group">
+                  <input type="text"
+                   [ngClass]="{'is-invalid': orderDetailsForm.get('name').errors 
+                   && orderDetailsForm.get('name').touched}"
+                  class="form-control" 
+                   formControlName="name"
+                   placeholder="Name">
+                   <div class="invalid-feedback">Please add a name</div>
+                </div>
+                <div class="form-group">
+                  <input [ngClass]="{'is-invalid': orderDetailsForm.get('country').errors
+                   && orderDetailsForm.get('country').touched}" class="form-control"
+                    placeholder="Country" formControlName="country">
+                  <div class="invalid-feedback" *ngIf="orderDetailsForm.get('country').touched
+                   && orderDetailsForm.get('country').hasError('required')">Country as is required</div>
+                </div>
+            
+                 <div class="form-group">
+                  <input [ngClass]="{'is-invalid': orderDetailsForm.get('city').errors
+                   && orderDetailsForm.get('city').touched}" class="form-control"
+                    placeholder="City" formControlName="city">
+                  <div class="invalid-feedback" *ngIf="orderDetailsForm.get('city').touched
+                   && orderDetailsForm.get('city').hasError('required')">city as is required</div>
+                </div>
+              
+                <div class="form-group">
+                  <input [ngClass]="{'is-invalid': orderDetailsForm.get('postalCode').errors
+                   && orderDetailsForm.get('postalCode').touched}" class="form-control"
+                    placeholder="Postal Code" formControlName="postalCode">
+                  <div class="invalid-feedback" *ngIf="orderDetailsForm.get('postalCode').touched
+                   && orderDetailsForm.get('postalCode').hasError('required')">PostalCode is required</div>
+                </div>
+                <div class="form-group">
+                  <input [ngClass]="{'is-invalid': orderDetailsForm.get('streetAddress').errors
+                   && orderDetailsForm.get('streetAddress').touched}" class="form-control"
+                    placeholder="Street Address" formControlName="streetAddress">
+                  <div class="invalid-feedback" *ngIf="orderDetailsForm.get('streetAddress').touched
+                   && orderDetailsForm.get('streetAddress').hasError('required')">Streetaddress is required</div>
+                </div>
+                <div class="form-group">
+                  <input [ngClass]="{'is-invalid': orderDetailsForm.get('mobileNo').errors
+                   && orderDetailsForm.get('mobileNo').touched}" class="form-control"
+                    placeholder="Mobile No" formControlName="mobileNo">
+                  <div *ngIf="(mobileNo.invalid && mobileNo.touched) || mobileNo.dirty">
+                    <small *ngIf="mobileNo.errors?.required" class="text-danger">Mobile No is required</small>
+                    <small *ngIf="mobileNo.errors?.maxLength" class="text-danger">Please provide a valid Mobile No</small>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <input [ngClass]="{'is-invalid': orderDetailsForm.get('emailAddress').errors
+                  && orderDetailsForm.get('emailAddress').touched}"
+	                      type="email" class="form-control"placeholder="Email Address" formControlName="emailAddress" />
+                    <div *ngIf="(emailAddress.invalid && emailAddress.touched) || emailAddress.dirty">
+                      <small *ngIf="emailAddress.errors?.required" class="text-danger">email is required</small>
+                      <!--question mark(?) is a safe navigation operator-->
+                      <small *ngIf="emailAddress.errors?.pattern" class="text-danger">Please provide a valid email address</small>
+                    </div>
+                </div>
+    
+              <div routerLinkActive="active" class="form-group text-md-right">
+                <button class="btn btn-outline-success mr-2" [disabled]="!orderDetailsForm.valid && bookAddedInCart != null" type="submit">Complete Order</button>
+                <button class="btn btn-outline-danger" type="button" (click)="cancel()">Cancel</button>
+              </div>
+              
+            </form>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div *ngIf="bookAddedInCart != null" class="col-sm-6 mt-10">
+      <div class="card shopping-cart">
+        <div class="card-header bg-dark text-light">
+          <i class="fa fa-shopping-cart mr-1" aria-hidden="true"></i>
+          Order Summary
+          <div class="clearfix"></div>
+        </div>
+        <div class="card-body text-md-center">
+          <table class="table table-hover">
+            <thead class="black white-text">
+              <tr>
+                <th>Title</th>
+                <th>Quantity</th>
+                <th>Unit Price</th>
+                <th>Total Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of bookAddedInCart">
+                <td>{{item.title}}</td>
+                <td class="ml-1">{{item.totalQuantity}}</td>
+                <td>{{item.price}}</td>
+                <td>{{item.totalPrice}}</td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer">
+          <div class="pull-right mr-4" style="margin: 5px">
+            <strong>Total price: <b>${{totalprice}}</b></strong>
+        </div>
+        </div>
+    </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,86 @@
+
+.quantity {
+    float: left;
+    margin-right: 15px;
+    background-color: #eee;
+    position: relative;
+    width: 80px;
+    overflow: hidden
+}
+.quantity-head {
+    float: left;
+    margin-right: 15px;
+    /* background-color: #eee; */
+    position: relative;
+    width: 80px;
+    overflow: hidden;
+}
+
+.quantity input {
+    margin: 0;
+    text-align: center;
+    width: 15px;
+    height: 15px;
+    padding: 0;
+    float: right;
+    color: #000;
+    font-size: 20px;
+    border: 0;
+    outline: 0;
+    background-color: #F6F6F6
+}
+hr {
+    margin-top: 11px;
+    margin-bottom: -5px;
+}
+
+.quantity input.quantity-field {
+    position: relative;
+    border: 0;
+    width: 100%;
+    height: 40px;
+    padding: 10px 25px 10px 10px;
+    text-align: center;
+    font-weight: 400;
+    font-size: 15px;
+    border-radius: 0;
+    background-clip: padding-box;
+    display: inline-block;
+
+}
+
+.input-group .minus, .input-group .plus {
+    color: rgb(201, 17, 17);
+}
+
+.input-group .minus:hover, .input-group .plus:hover {
+    background-color: #0ba85f
+}
+
+.quantity .minus {
+    bottom: 0
+}
+.shopping-cart {
+    margin-top: 20px;
+}
+
+.card-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 10px;
+}
+
+.text-md-left {
+    margin: auto;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -5px;
+    margin-left: -15px;
+}
+
+.text-md-right {
+    margin: auto;
+}

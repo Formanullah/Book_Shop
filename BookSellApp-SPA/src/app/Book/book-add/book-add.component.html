@@ -1,0 +1,76 @@
+<!-- <form #registerForm="ngForm" (ngSubmit)="register()"> -->
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-4">
+        <form [formGroup]="photoAddForm" (ngSubmit)="addBook()">
+          <h2 class="text-center text-primary">Add Book</h2>
+          <hr>
+      <!--     <div class="form-group">
+            <label class="control-label" style="margin-right:10px">I am a: </label>
+            <label class="radio-inline">
+              <input class="mr-3" type="radio" value="male" formControlName="gender">Male
+            </label>
+            <label class="radio-inline ml-3">
+              <input class="mr-3" type="radio" value="female" formControlName="gender">Female
+            </label>
+          </div> -->
+          <!-- <div class="form-group">
+            <input type="text" class="form-control" required name="username"
+             placeholder="Username" [(ngModel)]="model.username">
+          </div> -->
+          <div class="form-group">
+              <input type="text"
+               [ngClass]="{'is-invalid': photoAddForm.get('title').errors 
+               && photoAddForm.get('title').touched}"
+        
+              class="form-control" 
+               formControlName="title"
+               placeholder="Title">
+        
+               <div class="invalid-feedback">Please Choose a Title</div>
+            </div>
+        
+             <div class="form-group">
+              <input [ngClass]="{'is-invalid': photoAddForm.get('author').errors
+               && photoAddForm.get('author').touched}" class="form-control"
+                placeholder="Author" formControlName="author">
+              <div class="invalid-feedback" *ngIf="photoAddForm.get('author').touched
+               && photoAddForm.get('author').hasError('required')">Author as is required</div>
+            </div>
+        
+             <div class="form-group" >
+              <label for="categoryId">Please Select a category</label>
+              <select id="categoryId" [ngClass]="{'is-invalid': photoAddForm.get('categoryId').errors
+              && photoAddForm.get('categoryId').touched}" class="form-control"
+              formControlName="Select a category" formControlName="categoryId">
+                <option *ngFor="let category of categories" [ngValue]="category.id">{{category.categoryname}}</option>
+              </select>
+              <div class="invalid-feedback" *ngIf="photoAddForm.get('categoryId').touched
+               && photoAddForm.get('categoryId').hasError('required')">Category is required</div>
+            </div>
+          
+            <div class="form-group">
+              <input [ngClass]="{'is-invalid': photoAddForm.get('price').errors
+               && photoAddForm.get('price').touched}" class="form-control"
+                placeholder="price" formControlName="price">
+              <div class="invalid-feedback" *ngIf="photoAddForm.get('price').touched
+               && photoAddForm.get('price').hasError('required')">price is required</div>
+            </div>
+            <div class="form-group">
+                <span class="fileinput-new">Select image</span>
+                <input type="file" #Image #searchInput (change)="handleFileInput($event.target.files)" name="..." accept="image/*" class="form-control" required/>
+
+            </div>
+
+          <div class="form-group text-center">
+            <button class="btn btn-success mr-2" [disabled]="!photoAddForm.valid || !isImageChnaged" type="submit">Add</button>
+            <button class="btn btn-default" type="button" (click)="cancel()">Cancel</button>
+          </div>
+          
+        </form>
+        <p> form value: {{photoAddForm.value | json}} </p>
+        <p> form status: {{photoAddForm.status | json}} </p>
+      </div>
+    </div>
+  </div>
+  
